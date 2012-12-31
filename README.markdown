@@ -11,9 +11,11 @@ You can integrate the basic kerning functionality into a CMS with a simple div a
 - select a letter and press the ARROW or WASD keys (whit SHIFT)
 - double click on the text and change it (ENTER,ESC,SHIFT+ENTER)
 
-Example:
+I made with jQuery, but the KerningField only use it for event handling, so you can easily change to other library.
 
-goes to the CMS admin page:
+Usage example:
+
+to the admin page:
 ```html
 <div id="Text">Kerning</div>
 ```
@@ -28,7 +30,7 @@ var field = new KerningField($('#Text')[0], false);
 var domOutput = field.getDOMString(true);
 ```
 
-goes to the live page (from the domOutput):
+to the live page (from the domOutput):
 ```html
 <div class="kerned">
 	<span class="ls_-1">K</span>
@@ -37,8 +39,8 @@ goes to the live page (from the domOutput):
 	<span>g</span>
 </div>
 ```
-goes to the live page (manually setup some case...):
 ```css
+/* setup manually some css rule */
 .ls_-4 { letter-spacing: -4px}  
 .ls_-3 { letter-spacing: -3px}  
 .ls_-2 { letter-spacing: -2px} 
@@ -48,8 +50,6 @@ goes to the live page (manually setup some case...):
 .ls_3 { letter-spacing: 3px}
 .ls_4 { letter-spacing: 4px}
 ```
-
-I made with jQuery, but the KerningField only use it for event handling, so you can easily change to other library.
 
 Roadmap
 -------
