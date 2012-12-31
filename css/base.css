@@ -1,0 +1,253 @@
+html { height: 100%; }
+body {
+    background-color: #333;
+    background-image: '';
+	background-repeat: no-repeat, repeat;
+	background-size: 100% 100%, 128px;
+    color: #eee;
+    overflow: hidden;
+    /*width: 100%;*/
+    height: 100%;
+    min-height: 560px;
+}
+
+h1 { font-size: 1.5em;}
+
+.sidebar {
+	position: absolute;
+	background: black;
+	background: rgba(0, 0, 0, 0.5);
+	padding: 10px;
+	box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.8), 0px -1px 4px rgba(255, 255, 255, 0.5);
+	border-radius: 10px;
+	z-index: 2;
+	-webkit-transition: all 0.8s ease-in-out;
+	-moz-transition: all 0.8s ease-in-out;
+	-ms-transition: all 0.8s ease-in-out;
+	-o-transition: all 0.8s ease-in-out;
+	transition: all 0.8s ease-in-out;
+}
+
+.sidebar fieldset {
+	border: none;
+	padding: 0;
+}
+
+.sidebar fieldset:last-child { margin-top: 10px;}
+
+.sidebar.right {
+	width: 215px;
+	top: 50%;
+	margin-top: -140px;
+	right: 0px;
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+	box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.8), 1px 0px 4px rgba(255, 255, 255, 0.5);
+}
+.sidebar.right.closed {
+	right: -238px;
+}
+
+.sidebar.left {
+	width: 215px;
+	top: 50%;
+	margin-top: -140px;
+	left: 0px;
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
+	box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.8), -1px 0px 4px rgba(255, 255, 255, 0.5);
+}
+.sidebar.left.closed {
+	left: -238px;
+}
+
+.sidebar.top {
+	width: 580px;
+	top: 0px;
+	left: 50%;
+	margin-left: -290px; 
+	line-height: 1.4em;
+	border-top-right-radius: 0;
+	border-top-left-radius: 0;
+}
+.sidebar.top.closed {
+	top: -229px;
+}
+
+.sidebar.bottom {
+	width: 836px;
+	bottom: 0px;
+	left: 50%;
+	margin-left: -418px; 
+	border-bottom-right-radius: 0;
+	border-bottom-left-radius: 0;
+	box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.8), 0px 1px 4px rgba(255, 255, 255, 0.5);
+}
+.sidebar.bottom.closed {
+	bottom: -164px;
+}
+
+.flap {
+	cursor: pointer;
+	font-size: 20px;
+	display: block;
+	position: absolute;
+	background: rgba(0, 0, 0, 0.4);
+	padding: 10px;
+	border-top-left-radius: 10px;
+	border-bottom-left-radius: 10px;
+	box-shadow: 0 0 4px rgba(255, 255, 255, 0.5);
+	-webkit-transform: scaleX(0.5);
+	-moz-transform: scaleX(0.5);
+	-ms-transform: scaleX(0.5);
+	-o-transform: scaleX(0.5);
+	transform: scaleX(0.5);
+}
+
+.left .flap { 
+	-webkit-transform: rotate(-180deg) scaleX(0.5);
+	-moz-transform: rotate(-180deg) scaleX(0.5);
+	-ms-transform: rotate(-180deg) scaleX(0.5);
+	-o-transform: rotate(-180deg) scaleX(0.5);
+	transform: rotate(-180deg) scaleX(0.5);
+}
+
+.top .flap { 
+	-webkit-transform: rotate(-90deg) scaleX(0.5);
+	-moz-transform: rotate(-90deg) scaleX(0.5);
+	-ms-transform: rotate(-90deg) scaleX(0.5);
+	-o-transform: rotate(-90deg) scaleX(0.5);
+	transform: rotate(-90deg) scaleX(0.5);
+}
+.bottom .flap { 
+	-webkit-transform: rotate(90deg) scaleX(0.5);
+	-moz-transform: rotate(90deg) scaleX(0.5);
+	-ms-transform: rotate(90deg) scaleX(0.5);
+	-o-transform: rotate(90deg) scaleX(0.5);
+	transform: rotate(90deg) scaleX(0.5);
+}
+
+.inputbg {
+	border: none;
+	color: white;
+	border-radius: 2px;
+	background: #172b2e;
+	background: rgba(255, 255, 255, 0.2);
+}
+
+.ui-spinner-up { margin-left: -34px;}
+
+#OnScreenCheck {
+	position: absolute;
+	right: 19px;
+	bottom: 33px;
+	font-weight: bold;
+}
+
+#Text {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	cursor: pointer;
+	text-align: left;
+}
+
+#Text:focus { outline: none;}
+#Text[contenteditable=true] {
+	border: 1px solid black;
+	box-shadow: 0 0 6px white;
+}
+
+#Text span { position: relative;}
+#Text span:focus { outline: none; }
+
+#MainSetup select,
+#MainSetup input {
+    width: 75px;
+	padding: 2px;
+	margin-top: 4px;
+}
+
+#MainSetup select {
+	width: 80px;
+	margin-left: -5px;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	-ms-appearance: none;
+	-o-appearance: none;
+	appearance: none;
+}
+
+#MainSetup option { color: black;}
+
+#MainSetup label { display: inline-block; width: 129px }
+#MainSetup label[for=BackgroundNoise],
+#MainSetup label[for=BackgroundGradient] { width: 145px }
+#MainSetup input[type=checkbox] {width: 20px}
+
+#Outputs .inputs { width: 100%; text-align: center; margin-bottom: 10px;}
+
+#Outputs textarea {
+	display: block;
+	width: 400px;
+	height: 100px;
+	max-width: 400px;
+	max-height: 100px;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	padding: 5px;
+}
+
+#CSSOutput {
+	float: left;
+	margin-right: 15px;
+}
+
+#Fork {
+	display: block;
+	position: absolute;
+	top: -35px;
+	right: -113px;
+	padding: 7px 50px;
+	letter-spacing: 2px;
+	text-decoration: none;
+	background: rgba(0, 0, 0, 0.3);
+	color: rgba(255, 255, 255, 0.8); 
+	box-shadow: 0 0 3px rgba(255, 255, 255, 0.5);
+	-webkit-transform: rotate(45deg);
+	-webkit-transform-origin: 0 0;
+	-moz-transform: rotate(45deg);
+	-moz-transform-origin: 0 0;
+	-ms-transform: rotate(45deg);
+	-ms-transform-origin: 0 0;
+	-o-transform: rotate(45deg);
+	-o-transform-origin: 0 0;
+	transform: rotate(45deg);
+	transform-origin: 0 0;
+	-webkit-transition: all 0.6s ease-in-out;
+	-moz-transition: all 0.6s ease-in-out;
+	-ms-transition: all 0.6s ease-in-out;
+	-o-transition: all 0.6s ease-in-out;
+	transition: all 0.6s ease-in-out;
+}
+
+#Fork:hover {
+	background: rgba(0, 0, 0, 0.8);
+	color: rgba(255, 255, 255, 1); 
+	box-shadow: 0 0 3px rgba(255, 255, 255, 0.8);
+}
+
+#BrowserChoicer {
+	font-size: 20px;
+	text-align: center;
+}
+
+#BrowserChoicer iframe {
+	border: none;
+	width: 825px;
+	height: 440px;
+}
+
+#BrowserChoicer iframe body {
+	background-color: #333;
+}

@@ -1,0 +1,105 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+	<head>
+		<meta http-equiv="Content-Language" content="en" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+		<title>Kerning playground</title>
+
+		<meta name="keywords" content="kerning" />
+		<meta name="description" content="Kerning playground" />
+
+		<link href="css/base.css" rel="stylesheet" type="text/css" />
+		<link href="css/colorpicker.css" rel="stylesheet" type="text/css" />
+	</head>
+	<body>
+		<noscript>Sorry, but javascript is required... :(</noscript>
+		<div id="Content" style="opacity:0; filter=alpha(opacity=0);">
+			<div id="MainInfo" class="sidebar top">
+				<div>
+				<h1>Hi! Here is a playground for text kerning.</h1>
+				Click on a letter and press <strong>LEFT</strong> or <strong>RIGHT</strong> arrow key and the letter spacing will change.<br />
+				You also can press <strong>UP</strong> and <strong>DOWN</strong> key for vertical nudge. (Tip: <strong>WASD</strong> keys ;)<br />
+				Hold your <strong>SHIFT</strong> button for bigger movement.<br /><br />
+				<strong>Double click</strong> on the text and you can overwrite it.<br />
+				<strong>ESC</strong> will cancel, <strong>ENTER</strong> will confirm the changes.<br />
+				<strong>SHITF + ENTER</strong> will insert a new row.
+				<!--<div id="OnScreenCheck"><label for="isOnscreen">Show on screen controls?</label><input type="checkbox" name="isOnscreen" /></div>-->
+				</div>
+			</div>
+
+			<div id="Text" style="text-align: left">Kerning</div>
+
+			<div id="MainSetup" class="sidebar left">
+				<form>
+					<fieldset>
+						<label for="FontFamily">Font Family:</label><input type="text" name="FontFamily" value="Arial" class="inputbg" /><br />
+						<label for="FontSize">Font Size:</label><input type="text" name="FontSize" value="72" class="inputbg" /><br />
+						<label for="LetterSpacing">Letter Spacing:</label><input type="text" name="LetterSpacing" value="1"  class="inputbg"/><br />
+						<label for="LineHeight">Line Height:</label><input type="text" name="LineHeight" value="72" class="inputbg" /><br />
+						<label for="TextAlign">Text Align:</label>
+						<select name="TextAlign" value="left" class="inputbg" >
+							<option>left</option>
+							<option>center</option>
+							<option>right</option>
+						</select><br />
+						<label for="isBold">Bold:</label><input type="checkbox" name="IsBold" /><br />
+						<label for="IsItalic">Italic:</label><input type="checkbox" name="IsItalic" /><br />
+					</fieldset>
+					<fieldset>
+						<label for="TextColor">Text Color:</label><input type="text" name="TextColor" value="eeeeee" class="inputbg"/><br />
+						<label for="BackgroundColor">Background Color:</label><input type="text" name="BackgroundColor" value="5a848a" class="inputbg" /><br />
+						<label for="Background">Background:</label><input type="checkbox" name="Background" checked="true" /><br />
+					</fieldset>
+				</form>
+			</div>
+
+			<div id="Outputs" class="sidebar bottom">
+				<div>
+					<div class="inputs"><label for="isOptimazed">Optimazed:</label><input type="checkbox" name="isOptimazed" checked="true" /></div>
+					<textarea class="inputbg" id="CSSOutput" readonly>CSS output</textarea>
+					<textarea class="inputbg" id="DOMOutput" readonly>DOM output</textarea>
+				</div>
+			</div>
+
+			<a id="Fork" href="https://github.com/NeverI/Kerning" target="_blank">Fork me on Github</a>
+		</div>
+		<script type="text/javascript" >
+		(function() {
+			function addScript(path, prevScript) {
+					
+				if (addScript.prototype.scripts.indexOf(path) != -1) return;
+				
+				addScript.prototype.scripts += path+', ';
+
+				var scriptTag = document.createElement('script');
+					scriptTag.setAttribute('type', 'text/javascript');
+					scriptTag.setAttribute('src', path);
+
+				if (prevScript) {
+					prevScript.onload = function () { document.body.appendChild(scriptTag); };
+					prevScript.onreadystatechange = function () {
+						if ((this.readyState == 'complete' || this.readyState == 'loaded') && prevScript) {
+							document.body.appendChild(scriptTag);
+							prevScript = undefined;
+						}
+					}		
+				} else {
+					
+					document.body.appendChild(scriptTag);
+				}
+
+				return scriptTag;
+			};
+			addScript.prototype.scripts = '';
+			 
+			var jq = addScript('js/jquery.js'),
+				ui = addScript('js/jquery-ui.js', jq),
+				cp = addScript('js/colorpicker.js', ui),
+				fi = addScript('js/kerningfield.js', cp);
+				ap = addScript('js/app.js', fi);
+			
+		})();
+		</script>
+   	</body>
+</html>
