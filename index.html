@@ -1,7 +1,6 @@
 <!DOCTYPE HTML>
 <html lang="en" >
 	<head>
-		<meta http-equiv="Content-Language" content="en" />
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
 		<title>Kerning playground</title>
@@ -9,11 +8,17 @@
 		<meta name="keywords" content="kerning" />
 		<meta name="description" content="Kerning playground" />
 
-		<link href="css/base.css" rel="stylesheet" type="text/css" />
-		<link href="css/colorpicker.css" rel="stylesheet" type="text/css" />
+		<link href="css/base.min.css" rel="stylesheet" type="text/css" />
+		<script src="js/head.js"></script>
 	</head>
 	<body>
 		<noscript>Sorry, but javascript is required... :(</noscript>
+		<!--[if lt IE 9]>
+		<div id="BrowserChoicer">
+		<p>Sorry, but your browser is too old :(<br/><br/>If you pay attention for text kerning,<br/>please pay attention for your browser version:</p>
+		<iframe src="http://www.browserchoice.eu"></iframe>
+		</div>
+		<![endif]-->
 		<div id="Content" style="opacity:0; filter=alpha(opacity=0);">
 			<div id="MainInfo" class="sidebar top">
 				<div>
@@ -60,46 +65,11 @@
 					<textarea class="inputbg" id="CSSOutput" readonly>CSS output</textarea>
 					<textarea class="inputbg" id="DOMOutput" readonly>DOM output</textarea>
 				</div>
+				<p>Your feedback are more than welcome by <a href="http://nevisite.com/#Contact" target="_blank">nevi</a> :)</p>
 			</div>
 
 			<a id="Fork" href="https://github.com/NeverI/Kerning" target="_blank">Fork me on Github</a>
 		</div>
-		<script type="text/javascript" >
-		(function() {
-			function addScript(path, prevScript) {
-					
-				if (addScript.prototype.scripts.indexOf(path) != -1) return;
-				
-				addScript.prototype.scripts += path+', ';
-
-				var scriptTag = document.createElement('script');
-					scriptTag.setAttribute('type', 'text/javascript');
-					scriptTag.setAttribute('src', path);
-
-				if (prevScript) {
-					prevScript.onload = function () { document.body.appendChild(scriptTag); };
-					prevScript.onreadystatechange = function () {
-						if ((this.readyState == 'complete' || this.readyState == 'loaded') && prevScript) {
-							document.body.appendChild(scriptTag);
-							prevScript = undefined;
-						}
-					}		
-				} else {
-					
-					document.body.appendChild(scriptTag);
-				}
-
-				return scriptTag;
-			};
-			addScript.prototype.scripts = '';
-			 
-			var jq = addScript('js/jquery.js'),
-				ui = addScript('js/jquery-ui.js', jq),
-				cp = addScript('js/colorpicker.js', ui),
-				fi = addScript('js/kerningfield.js', cp);
-				ap = addScript('js/app.js', fi);
-			
-		})();
-		</script>
+		<script type="text/javascript" >head.js("js/jquery.js", "js/jquery-ui.js", 'js/app.min.js');</script>
    	</body>
 </html>

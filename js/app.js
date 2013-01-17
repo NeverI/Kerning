@@ -3,12 +3,16 @@
 var App = {
 
 	kerningField: undefined,
-	mainSetup: undefined,
+	leftbar: undefined,
 	topbar: undefined,
 	bottombar: undefined,
 
 	init: function(kerningFieldView, mainSetupView, topbarview, bottombarview) {
 		var self = this;
+		
+		$('#Content').css('display', 'block').animate({'opacity': 1});
+
+		window.onresize = this.resize(kerningFieldView);
 
 		this.alignKerningText(kerningFieldView);
 
@@ -19,7 +23,7 @@ var App = {
 		this.kerningField = new KerningField(kerningFieldView[0], true);
 		kerningFieldView.on('change', this.alignKerningText);
 
-		this.mainSetup = new Sidebar(mainSetupView, {
+		this.leftbar = new Sidebar(mainSetupView, {
 			'FontFamily': new InputParams({
 					on: kerningFieldView,
 					name: 'font-family',
@@ -99,19 +103,23 @@ var App = {
 		$('#MainSetup input[name=BackgroundColor]').ColorPicker({
 			onChange:this.triggerChangeInColorPicker('BackgroundColor'), color:$('#MainSetup input[name=BackgroundColor]').val()});
 
-		$('#Content').animate({'opacity': 1})
+		this.leftbar.view.on('click',function(){window.onresize()})
+		this.bottombar.view.on('click',function(){window.onresize();})
+		window.onresize()
 
 		setTimeout(function(){if($('#MainInfo.closed')[0]) return;$('#MainInfo .flap').trigger('click')}, 5000)
 	},
 
 	alignKerningText: function(kerningFieldView){
-		var self = this;
+		var self = this,
+			input = $('input[name=isOptimazed]');
+
 		this.alignKerningText = function(){
 			kerningFieldView.css({
 				'margin-left': ~~(-kerningFieldView.width()*0.5)+'px',
 				'margin-top': ~~(-kerningFieldView.height()*0.5)+'px'});
 
-			self.changeCodeOutput($('input[name=isOptimazed]').is(':checked'));
+			self.changeCodeOutput(input.is(':checked'));
 		}
 
 	},
@@ -122,18 +130,34 @@ var App = {
 	},
 
 	triggerChangeInColorPicker: function(name) {
+		var setupInput = $('#MainSetup input[name='+name+']');
 		return function() {
-			$('#MainSetup input[name='+name+']').val(this.find('.colorpicker_hex input').val()).trigger('change');
+			setupInput.val(this.find('.colorpicker_hex input').val()).trigger('change');
 		}
 	},
 
 	browserIsSucks: function() {
 		if ($.browser.msie && parseFloat($.browser.version) < 9) {
-			$('body').html('');
-			$('body').append($('<div id="BrowserChoicer"><p>Sorry your browser is too old :(<br/><br/>If you pay attention for text kerning,<br/>please pay attention for your browser version:</p><iframe src="http://www.browserchoice.eu"></iframe></div>'))
+			$('#Content').html('');
 			return true;
 		}
 		return false;
+	},
+
+	resize: function(view) {
+		var self = this,
+		 	bottomPanel = $('#Outputs'),
+			leftPanel = $('#MainSetup');
+
+		return function(){
+			var bodyWidth = document.body.offsetWidth,
+				bodyHeight = document.body.offsetHeight,
+				top = !bottomPanel.hasClass('closed') && bodyHeight-bottomPanel.height() < bodyHeight*0.5+view.height()*0.5+40 ? ((bodyHeight-bottomPanel.height())*0.5)-10+'px' : '50%',
+				left = !leftPanel.hasClass('closed') && leftPanel.outerWidth()+40 > bodyWidth*0.5-view.width()*0.5 ? ((bodyWidth+leftPanel.outerWidth())*0.5)+'px' : '50%';
+
+			view.css('top', top);
+			view.css('left', left != '50%' && parseInt(left)+view.width()*0.5 < bodyWidth ? left : '50%');
+		}
 	}
 
 }
